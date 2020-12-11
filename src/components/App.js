@@ -9,7 +9,11 @@ const App = () => {
       if(itvrl) {
         clearInterval(itvrl);
       }
-      let currValue = Math.floor(e.target.value);
+      const givenValue = e.target.value;
+      let currValue = 0;
+      if(!isNaN(givenValue)) {
+       currValue = Math.floor(e.target.value) < 0 ? 0 : Math.floor(e.target.value);
+      }
       itvrl = setInterval(() =>{
         setTimer(currValue);
         if(currValue === 0) {
