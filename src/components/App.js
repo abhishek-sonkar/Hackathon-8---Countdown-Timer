@@ -1,17 +1,21 @@
 import React, { Component, useState, useEffect } from "react";
 import '../styles/App.css';
 
+let itvrl;
 const App = () => {
   const [timer, setTimer] = useState(0);
   const keyListner = (e) => {
     if(e.keyCode === 13) {
-      let currValue = e.target.value;
-      const inter = setInterval(() =>{
-        currValue -= 1;
+      if(itvrl) {
+        clearInterval(itvrl);
+      }
+      let currValue = Math.floor(e.target.value);
+      itvrl = setInterval(() =>{
+        setTimer(currValue);
         if(currValue === 0) {
-          clearInterval(inter);
+          clearInterval(itvrl);
         }
-        setTimer(currValue); 
+        currValue -= 1;
       }, 1000);
     }
   }
